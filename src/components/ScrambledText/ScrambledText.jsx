@@ -21,13 +21,17 @@ const ScrambledText = ({
   const rootRef = useRef(null);
   const charsRef = useRef([]);
 
-  useEffect(() => {
-    if (!rootRef.current) return;
+ useEffect(() => {
+  if (!rootRef.current) return;
 
-    const split = SplitText.create(rootRef.current.querySelector("p"), {
-      type: "chars",
-      charsClass: "char",
-    });
+  const p = rootRef.current.querySelector("p");
+  if (!p) return; // ⬅️ INI YANG KURANG
+
+  const split = new SplitText({
+  target: p,
+  type: "chars",
+  charsClass: "char",
+});
     charsRef.current = split.chars;
 
     charsRef.current.forEach((c) => {

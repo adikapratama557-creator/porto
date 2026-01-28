@@ -162,9 +162,11 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
         metalness={0.8}
       />
     </mesh>
-  )}
-    <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
-    <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
+  )} 
+    {nodes?.clip?.geometry && (
+    <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />)}
+    {nodes?.clamp?.geometry && (
+    <mesh geometry={nodes.clamp.geometry} material={materials.metal} />)}
   </group>
 </RigidBody>
 
