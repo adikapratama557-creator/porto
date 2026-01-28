@@ -27,11 +27,11 @@ const ScrambledText = ({
   const p = rootRef.current.querySelector("p");
   if (!p) return; // ⬅️ INI YANG KURANG
 
-  const split = new SplitText({
-  target: p,
-  type: "chars",
-  charsClass: "char",
-});
+//   const split = new SplitText({
+//   target: p,
+//   type: "chars",
+//   charsClass: "char",
+// });
     charsRef.current = split.chars;
 
     charsRef.current.forEach((c) => {
