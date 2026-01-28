@@ -42,7 +42,13 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
 function Band({ maxSpeed = 50, minSpeed = 0 }) {
   const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef();
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
-  const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
+  const segmentProps = {
+  type: 'dynamic',
+  canSleep: true,
+  angularDamping: 4,
+  linearDamping: 4,
+}
+
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
   const [curve] = useState(() => new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]));
@@ -145,6 +151,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
       )
     }}
   >
+    {nodes?.card?.geometry && (
     <mesh geometry={nodes.card.geometry}>
       <meshPhysicalMaterial
         map={materials.base.map}
@@ -155,7 +162,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }) {
         metalness={0.8}
       />
     </mesh>
-
+  )}
     <mesh geometry={nodes.clip.geometry} material={materials.metal} material-roughness={0.3} />
     <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
   </group>
